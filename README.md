@@ -1,2 +1,3 @@
 # greenatom_assignment
-Sentiment analysis for movie reviews on with django
+
+The original dataset https://ai.stanford.edu/~amaas/data/sentiment/

@@ -44,7 +44,7 @@ def pad_tensor(vec, length, pad_symbol):
         0
     )
 
-    return x, vec[:, 1]
+    return x, [x[1] for x in vec]
 
 
 class Padder:

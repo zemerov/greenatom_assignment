@@ -2,6 +2,7 @@ import collections
 import itertools
 import io
 import string
+from os import listdir
 
 """
 This file contains 2 classes:
@@ -17,32 +18,24 @@ class ManualTokenizer:
     """
 
     def __init__(self):
-        self.text = ''
+        self.cnt = 0
 
-    def read_file(self, file_path):
+    def get_tokens_and_score(self, dir_path):
         """
-        :param file_path: path to txt file
+        :param dir_path: path to txt file
+
+        :return (yield) text, score
         """
 
-        with io.open(file_path, encoding='utf-8') as file:
-            self.text = file.readlines()
+        for filename in listdir(dir_path):
+            with io.open(dir_path + filename, encoding='utf-8') as file:
+                self.cnt += 1
+                table = str.maketrans('', '', string.punctuation)
 
-    def get_tokens(self):
-        """
-        Note: you should call read_file method before to store raw txt file
-
-        :return python list  of words
-        """
-        if self.text == '':
-            raise Exception('Nothing to tokenize')
-        else:
-            self.text = ''.join([x.replace('\n', ' ') for x in self.text[5:]])
-            self.text = list(filter(lambda x: len(x) > 3, self.text.split('.')))
-            self.text = [" ".join(x.split()) for x in self.text]
-
-            table = str.maketrans('', '', string.punctuation)
-
-            return [tok.lower().translate(table) for tok in self.text]  # Get rid of punctuation
+                score = filename.split('.')[0].split('_')[1]  # Get score from the name
+                tokens = ''.join(file.readlines()).replace('<br />', ' ')
+                
+                yield [tok.lower().translate(table) for tok in tokens.split()], score
 
 
 class Vocabulary:

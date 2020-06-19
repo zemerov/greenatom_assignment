@@ -34,7 +34,7 @@ class ManualTokenizer:
 
                 score = filename.split('.')[0].split('_')[1]  # Get score from the name
                 tokens = ''.join(file.readlines()).replace('<br />', ' ')
-                
+
                 yield [tok.lower().translate(table) for tok in tokens.split()], score
 
 

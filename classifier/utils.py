@@ -44,7 +44,7 @@ def pad_tensor(vec, length, pad_symbol):
         0
     )
 
-    return x, [x[1] for x in vec]
+    return x, torch.LongTensor([x[1] for x in vec])
 
 
 class Padder:

@@ -6,13 +6,15 @@ from torch.utils.data import Dataset
 
 class Dataset(Dataset):
     """Custom data.Dataset compatible with data.DataLoader."""
-    def __init__(self, data, vocab):
+    def __init__(self, data, vocab, overfit_size=1000):
         """
         :param data: list of pairs (tokens, label)
         :param vocab: tokens mapping {'token': number, ...}
         """
         self.data = data
         self.vocab = vocab
+        self.overfit = False
+        self.overfit_size = overfit_size
 
     def __getitem__(self, index):
         """
@@ -25,7 +27,10 @@ class Dataset(Dataset):
         return [word, label]
 
     def __len__(self):
-        return len(self.data)
+        if self.overfit:
+            return self.overfit_size
+        else:
+            return len(self.data)
 
 
 def pad_tensor(vec, length, pad_symbol):

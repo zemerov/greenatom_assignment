@@ -27,6 +27,8 @@ class ManualTokenizer:
         :return (yield) text, score
         """
 
+        # TODO add filter to '' tokens
+
         for filename in listdir(dir_path):
             with io.open(dir_path + filename, encoding='utf-8') as file:
                 self.cnt += 1

@@ -44,16 +44,7 @@ def pad_tensor(vec, length, pad_symbol):
         0
     )
 
-    y = torch.stack(
-        tuple(
-            map(
-                lambda x: torch.cat([x[1], torch.LongTensor([pad_symbol] * max(length - x[1].shape[0], 0))]),
-                vec
-            )
-        ),
-        0
-    )
-    return x, y
+    return x, vec[:, 1]
 
 
 class Padder:

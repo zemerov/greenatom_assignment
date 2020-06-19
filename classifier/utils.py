@@ -52,7 +52,7 @@ class Padder:
         self.pad_symbol = pad_symbol
 
     def __call__(self, batch):
-        max_size = max(map(lambda x: len(x[1]), batch))
+        max_size = max(map(lambda x: len(x[0]), batch))
         return pad_tensor(batch, max_size, self.pad_symbol)
 
 

@@ -7,12 +7,22 @@ from torch.utils.data import Dataset
 class Dataset(Dataset):
     """Custom data.Dataset compatible with data.DataLoader."""
     def __init__(self, data, vocab):
+        """
+        :param data: list of pairs (tokens, label)
+        :param vocab: tokens mapping {'token': number, ...}
+        """
         self.data = data
         self.vocab = vocab
 
     def __getitem__(self, index):
-        word = torch.LongTensor(self.vocab([['BEGIN'] + list(self.data[index].split()) + ['END']]))[0]
-        return [word[:-1], word[1:]]
+        """
+        :param index: position of data element in self.data
+        :return: list of  [word, label] for data element. word is a LongTensor of mapped tokens
+        """
+        label = torch.FloatTensor([self.data[index][1]])
+        word = torch.LongTensor(self.vocab([self.data[index][0]]))[0]
+
+        return [word, label]
 
     def __len__(self):
         return len(self.data)
@@ -50,7 +60,7 @@ class Padder:
         return pad_tensor(batch, max_size, self.pad_symbol)
 
 
-def criterion_perplexity(model_, eval_iter, criter, device):
+def perplexity_criterion(model_, eval_iter, criter, device):
     """
     :param model_: torch.nn.Module
     :param eval_iter: evaluation itarator

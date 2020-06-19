@@ -21,7 +21,7 @@ class Dataset(Dataset):
         :param index: position of data element in self.data
         :return: list of  [word, label] for data element. word is a LongTensor of mapped tokens
         """
-        label = torch.FloatTensor([self.data[index][1]])
+        label = torch.FloatTensor([int(self.data[index][1])])
         word = torch.LongTensor(self.vocab([self.data[index][0]]))[0]
 
         return [word, label]

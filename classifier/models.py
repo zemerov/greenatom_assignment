@@ -52,3 +52,39 @@ class LSTM(nn.Module):
 
     def init_hidden(self, batch_size):
         return torch.zeros([1, batch_size, self.hidden_dim])
+
+
+class CNN(nn.Module):
+    def __init__(self, V, D, kernel_sizes, out_channels, dropout=0.5):
+        super(CNN, self).__init__()
+
+        self.embed = nn.Embedding(V, D)
+        self.convolutions = nn.ModuleList()
+        self.linear = nn.Linear(out_channels * len(kernel_sizes), 2)
+        self.logprob = nn.LogSoftmax(dim=1)
+        # self.relu = nn.LeakyReLU(0.2)
+
+        for k_size in kernel_sizes:
+            self.convolutions.append(
+                nn.Sequential(
+                    nn.Conv1d(D, out_channels, kernel_size=k_size, padding=k_size // 2),
+                    nn.LeakyReLU(0.2)
+                )
+            )
+
+    def forward(self, x):  # [batch_size, seq_len]
+        x = self.embed(x)  # [batch_size, seq_len, D]
+        x = x.permute((0, 2, 1))  # [batch_size, D, seq_len]
+
+        res = []
+
+        for layer in self.convolutions:
+            # print('x shape', x.shape)
+            current = torch.max(layer(x), dim=2).values
+            # print(current.shape, current.shape)
+            res.append(current)
+
+        x = torch.cat(res, dim=1)
+        # print(x.shape)  # supposed [batch_size, ]
+        logit = self.logprob(self.linear(x))
+        return logit

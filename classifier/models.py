@@ -23,7 +23,7 @@ class GRU(nn.Module):
             output, hidden = self.GRU(seq)
         else:
             output, hidden = self.GRU(seq, hidden)
-        
+
         output = self.linear(output)
 
         return self.logprob(self.drop(output)), hidden
@@ -88,4 +88,6 @@ class CNN(nn.Module):
         x = torch.cat(res, dim=1)
         logit = self.logprob(self.linear(x))
 
-        return logit
+        gru_sample = 0
+
+        return logit, gru_sample

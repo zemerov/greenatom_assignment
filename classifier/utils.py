@@ -78,3 +78,16 @@ def perplexity_criterion(model_, eval_iter, criter, device):
     perplexity /= cnt_sample
 
     return perplexity
+
+
+def calculate_metrics(pred, real):
+    tp = (pred[real == 1] == 1).sum()
+    fp = (pred[real == 0] == 1).sum()
+    fn = (pred[real == 1] == 0).sum()
+
+    accuracy = (pred == real).sum() / real.shape[0]
+    precision = tp / (tp + fp)
+    recall = tp / (tp + fn)
+    f1 = 2 * (precision * recall) / (precision + recall)
+
+    return accuracy, precision, recall, f1

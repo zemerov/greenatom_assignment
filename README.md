@@ -24,10 +24,10 @@ to this rule.
 
 ### GRU
 
-| Model            | Real accuracy  |Binary Accuracy | F1    | Precision | Recall |
-| ----------------:|-------------- :|:--------------:| -----:|----------:|-------:|
-| GRU + dropout    | 0.15           | 0.63           | 0.51  | 0.75      | 0.38   |
-| GRU              | 0.11           | 0.57           | 0.41  | 0.64      | 0.31   |
+| Model            | Real accuracy  |Binary Accuracy | F1    | Precision |
+| ----------------:|-------------- :|:--------------:| -----:|----------:|
+| GRU + dropout    | 0.15           | 0.63           | 0.51  | 0.75      |
+| GRU              | 0.11           | 0.57           | 0.41  | 0.64      | 
 
 
 <p align="center"><img src="/img/gru.png" width="600" height="320"/></p>

@@ -23,14 +23,11 @@ and less than 5 considered as negative. All columns except Real accuracy calcula
 to this rule.  
 
 ### GRU
-|model| acc|
-|-----|----|
-|gru | 0.6|
 
-| Model            | Real accuracy  |Binary Accuracy | F1    | Precision |
-| ----------------:|-------------- :|:--------------:| -----:|----------:|
-| GRU + dropout    | 0.15           | 0.63           | 0.51  | 0.75      |
-| GRU              | 0.11           | 0.57           | 0.41  | 0.64      | 
+| Model            | Real accuracy  |Binary Accuracy | F1    | Precision | Recall |
+| ---------------- | -------------- | -------------- | ----- |---------- |--------|
+| GRU + dropout    | 0.15           | 0.63           | 0.51  | 0.75      | 0.38   |
+| GRU              | 0.11           | 0.57           | 0.41  | 0.64      | 0.31   |
 
 
 <p align="center"><img src="/img/gru.png" width="600" height="320"/></p>
@@ -38,7 +35,7 @@ to this rule.
 ### Neural net with conv layers
 
 | Model                | Real accuracy  |Binary Accuracy | F1    | Precision | Recall |
-| ------------------- :|-------------- :|:--------------:| -----:|----------:|-------:|
+| -------------------  |--------------  | -------------- | ----- |---------- |------- |
 | Big ConvNet + dropout| 0.183          | 0.74           | 0.71  | 0.82      | 0.62   |
 | ConvNet              | 0.171          | 0.72           | 0.69  | 0.76      | 0.63   |
 

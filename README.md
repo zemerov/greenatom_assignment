@@ -26,8 +26,8 @@ to this rule.
 
 | Model            | Real accuracy  |Binary Accuracy | F1    | Precision | Recall |
 | ---------------- | -------------- | -------------- | ----- |---------- |--------|
-| GRU + dropout    | 0.15           | 0.63           | 0.51  | 0.75      | 0.38   |
 | GRU              | 0.11           | 0.57           | 0.41  | 0.64      | 0.31   |
+| GRU + dropout    | 0.15           | 0.63           | 0.51  | 0.75      | 0.38   |
 
 
 <p align="center"><img src="/img/gru.png" width="600" height="320"/></p>
@@ -36,11 +36,11 @@ to this rule.
 
 | Model                | Real accuracy  |Binary Accuracy | F1    | Precision | Recall |
 | -------------------  |--------------  | -------------- | ----- |---------- |------- |
-| Big ConvNet + dropout| 0.183          | 0.74           | 0.71  | 0.82      | 0.62   |
 | ConvNet              | 0.171          | 0.72           | 0.69  | 0.76      | 0.63   |
+| Big ConvNet + dropout| 0.183          | 0.74           | 0.71  | 0.82      | 0.62   |
 
 <p align="center"><img src="/img/cnn.png" width="600" height="320"/></p>
 
  As we can see ConvNet has a better score. Thus, it is out choice for website.
  
- All trained model parameters can be found [here](drive.google.com/drive/folders/1S7h-KGgstiYbPRJSlNR39ulGSEAArl_w?usp=sharing)
+ All trained model parameters can be found [here](https://drive.google.com/drive/folders/1S7h-KGgstiYbPRJSlNR39ulGSEAArl_w?usp=sharing)

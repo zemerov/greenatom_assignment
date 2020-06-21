@@ -23,6 +23,9 @@ and less than 5 considered as negative. All columns except Real accuracy calcula
 to this rule.  
 
 ### GRU
+|model| acc|
+|-----|----|
+|gru | 0.6|
 
 | Model            | Real accuracy  |Binary Accuracy | F1    | Precision |
 | ----------------:|-------------- :|:--------------:| -----:|----------:|
